@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/services.dart';
 import 'package:oauth2/oauth2.dart';
 import 'package:dartz/dartz.dart';
@@ -133,7 +131,7 @@ class GithubAuthenticator {
     } on FormatException {
       return left(const AuthFailure.server('Server response was invalid'));
     } on AuthorizationException catch (e) {
-      return left(const AuthFailure.server('${e.error}: ${e.description}'));
+      return left(AuthFailure.server('${e.error}: ${e.description}'));
     } on PlatformException {
       return left(const AuthFailure.storage());
     }
